@@ -1,3 +1,7 @@
-  #!/bin/bash
-   mkdir -p /models/phi-3
-   wget -O /models/phi-3/phi-3.5-model.bin https://example.com/phi-3.5-model.bin
+#!/bin/bash
+
+# Ensure .NET dependencies are restored
+dotnet restore Phi3Sample.csproj
+
+# Add any other setup tasks here
+echo "Setup completed successfully!"

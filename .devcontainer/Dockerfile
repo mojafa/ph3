@@ -1,8 +1,15 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0
+# Use the ASP.NET 7.0 runtime as the base image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+
+# Set the working directory
 WORKDIR /app
-COPY Samples/Phi3Sample.csproj ./Samples/
-RUN dotnet restore ./Samples/Phi3Sample.csproj
-COPY . .
-RUN dotnet publish ./Samples/Phi3Sample.csproj -c Release -o out
-WORKDIR /app/out
-CMD ["dotnet", "Phi3Sample.dll"]
+
+# Copy the project file and restore dependencies
+COPY Phi3Sample.csproj ./
+RUN dotnet restore
+
+# Copy the rest of the application files
+COPY . ./
+
+# Optional: Build the application
+RUN dotnet build --configuration Release
